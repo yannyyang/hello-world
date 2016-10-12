@@ -1,0 +1,249 @@
+npm install -g lothar
+npm install -g feather2lothar
+lothar release -r lothar-demo/common
+lothar release -r lothar-demo/main
+feather2lothar   A  ./B
+
+
+composer require
+
+
+C:\Program Files (x86)\Common Files\NetSarang;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Enterprise Vault\EVClient\;C:\Program Files (x86)\ATT\Graphviz\bin;C:\Program Files (x86)\ATT\Graphviz\bin\tools;C:\Program Files (x86)\Windows Imaging\;D:\Program Files\php;D:\programe\nodjs\;D:\Program Files (x86)\Java;C:\Users\yangpeifen564\AppData\Roaming\npm\node_modules\lothar\bin;
+
+
+feather server start --timeout 30 --port 7070
+feather init -n web -m common -c uft-8 feather-project-common  下载demo
+npm update feather-s -g 更新
+npm install -g feather-s --registry=https://registry.npm.taobao.org
+--registry=https://registry.npm.taobao.org
+update后一定要 -c下再-w，以及产出
+打包
+feather release -opD --dest ../a
+feather release -opD --dest local
+
+环境变量里的用户变量：
+D:\Program Files (x86)\Java\php;D:\Program Files (x86)\nodejs\npm;D:\Users\EX-LUWEIGUO043\AppData\Roaming\npm;
+=======================
+<script src="/static/js/index2.js" feather-position-bottom></script> 将index2.js固定在页面底部
+===================
+jS 的mod内部引用其它JS：
+js/mod/draggable/draggable.js 引用 js/mod/jquery/jquery.js 写成 $ = require(':jquery'); 
+js/mod/draggable/draggable.js 引用 js/common/mod/jquery/jquery.js 写成 $ = require('common:jquery');
+============feather_conf.js==========
+设置JS中mod的调用路径
+feather.config.set('require.config.rules', [
+    [/^\w+$/, function(all){
+        return 'mod/' + all + '.js'
+    }]
+]);
+js/mod/draggable/draggable.js 写成 $ = require(':jquery');  将会引用文件 js/:jquery.js
+-------------
+重写调用header组件的规则
+feather.config.set('template.componentRules', [
+	//重写调用header组件的规则
+]);
+
+C:\Program Files (x86)\Common Files\NetSarang;C:\ProgramData\Oracle\Java\javapath;%SystemRoot%\system32;%SystemRoot%;%SystemRoot%\System32\Wbem;%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Enterprise Vault\EVClient\;C:\Program Files (x86)\ATT\Graphviz\bin;C:\Program Files (x86)\ATT\Graphviz\bin\tools;C:\Program Files (x86)\Windows Imaging\;D:\Program Files\php;D:\programe\nodjs\;D:\Program Files (x86)\Java
+=====
+xshell
+查看log 
+
+<embed  align=right src="/static/event/wedhome/images/bless.swf" width="100%" height="100%" type="application/x-shockwave-flash" wmode="transparent" quality="high" ></embed>
+==好房宝paffe迁移feather==
+feather-web-gold的公用头尾 和组件依赖于仓库feather-web-common
+web端的代码在paffe-web-gold，之后会迁移到feather-web-gold
+mobile端的代码在paffe-mobile，之后会迁移到feather-mobile
+  'index' => 'h5/index',
+        'list' => 'h5/list',
+        'detail' => 'h5/detail',
+        'my' => 'h5/personal',
+        'qa' => 'faq/faq',
+        'home' => 'home/home',
+        'sign' => 'active/step2',
+        //'tradeinfo'       => 'del/detail',
+        'transin' => 'trade/deposit',
+        'dotransin' => 'result/result',
+        'pay' => 'trade/pay',
+        'dopay' => 'result/result',
+        'transout' => 'trade/withdraw',
+        'dotransout' => 'result/result',
+        'setpaypasswd' => 'active/step3',
+        'forgetpwd' => 'resetpwd',
+        'findpwdauthcode' => 'result/result',
+        'checkcard' => 'result/result',
+        'getintention' => 'h5/intention',
+        'setintention' => 'result/result',
+        'loadhtml' => 'result/result',
+
+=====onerror about img location=====
+function nofind(){
+    var img=event.srcElement;
+    img.src = __uri('images/hfb_desc.png');
+    img.onerror=null; 
+}
+html里面 onerror="nofind()" 这样，就可以了
+
+=====年月日转化=====
+function getDate(strDate) {
+            var st = strDate;
+            var a = st.split(" ");
+            var b = a[0].split("-");
+            var c = a[1].split(":");
+            var date = new Date(b[0], b[1], b[2], c[0], c[1], c[2])
+            return date;
+        }
+
+        //测试
+        alert(getDate("2012-9-20 19:46:18"));
+输出： sat oct 20 2012 19:46:18 GMT+0800
+---------
+//字符串转日期格式，strDate要转为日期格式的字符串
+        function getDate(strDate) {
+            var date = eval('new Date(' + strDate.replace(/\d+(?=-[^-]+$)/,
+             function (a) { return parseInt(a, 10) - 1; }).match(/\d+/g) + ')');
+            return date;
+        }
+ 
+        //测试
+        alert(getDate("2012-05-09"));
+输出： sat oct 20 2012 19:46:18 GMT+0800
+---------
+var month = a[0].split("-");
+            var day = a[1].split("-");
+
+
+====================
+ui-ui2
+---------mod/tabs/tab.js-----------
+new Tabs({
+        dom: '#project_cate li',
+        attr: 'data-target',
+        currentclass: 'cur'
+    });
+修改为
+var projectTabs = new Tabs({
+        dom: '#project_cate',
+        targetAttr: 'data-target',
+        currentClass: 'cur'
+    });
+
+$("#project_cate").tabs({
+targetAttr: 'data-target',
+currentClass: 'cur'
+});
+
+-------------Dialog------------
+new Dialog({
+esc:true,
+height: '250',
+dom: "#support_tips",
+title:false,
+autoOpen: true,											mask:false
+});
+修改为
+$("#support_tips").dialog({
+  esc : true,
+ height: '250',
+ mask:false,
+autoOpen: true
+  });
+--------page---------
+new Page({
+dom: '#' + pageTurn,
+pageTotal: Math.ceil(data.aPageList.total / 5),
+perPage: 5,
+currentPage: params.pid || 1,
+first: '&gt;上一页',
+last: '&lt;下一页',
+callback: function(page) {
+params.pid = page;
+getPage(pageTurn, pageWrap, crowdTpl, jsonData, params);
+}
+});
+改为
+$('#' + pageTurn).pager({
+pageTotal: Math.ceil(data.aPageList.total / 5),
+perPage: 5,
+currentPage: params.pid || 1,
+showFirst: false
+})
+.off('pager:switch')
+.on('pager:switch', function(event, page){
+params.pid = page;
+getPage(pageTurn, pageWrap, crowdTpl, jsonData, params);
+});
+--------formvalid---------
+$form.formValid().formValid("instance").reset();
+$form.formValid().formValid("instance").check(name);
+$form.formValid({
+                showSuccessStatus: true,
+                rules: {
+                    'sAuthCode': { //验证码
+                        required: true,
+                        rule: function(v){
+                            return /^\d{6,6}$/.test(v);
+                        },
+                        errorText: '请输入正确的验证码'
+                    }
+                }
+})
+.on('formValid:error', function(event, name, text){
+                $("input[name="+name+"]").addClass('input_error');
+});
+--------droplist---------
+
+--------template-----------
+--------suggestion-----------
+
+
+
+
+
+
+
+
+
+
+
+
+分支：event_project_1149
+仓库：hf-static  app-event-views
+
+
+
+
+
+
+
+分支：gold-project_1434
+仓库：app-hf-manage manage
+
+
+feather有mod，有__inline 你们都没用
+feather2.0整体代码重构了
+feather2.0现在只是个纯静态的 框架
+老feather有个静态模式
+你们知道么
+和feather2.0是一样的
+你们肯定不知道，给你们用来做webapp用的
+
+ 在Ajaxify的讲解中他提到了页面的Life Cycle。
+     2. 页面的Life Cycle可以分为Load，正常展示(?),　Unload, 
+     3. 其中load阶段浏览器会加载网页，以及网页中的CSS, Javascript，图片等资源，
+     4. 而unload阶段会做相反的事情；当页面切换时之前页面的Life Cycle结束，下一个页面的Life Cycle开始.
+     5. 而对于同一个站点的不同页面，有很多元素会共享，例如: CSS, Image, Javascript，　如果能避免load和unload就可能加速浏览器的响应；Ajaxify的出现就能解决这个问题
+　　当然Ajaxify相关的还有History的管理，以及带有anchor的URL如何转换成为一个普通的URL, 以便Crawler可以抓取，用户可以收藏。　还有Ajax的内存等的管理
+这里这段写的太好了
+太适合管理后台了
+manage  用个 ajaxify 再加个 Quickling
+
+富文本：
+都看下各自负责的业务，有没有用到ueditor 用到的 ueditor目录下面有个PHP目录，删掉，  并且hf-static对应的也清除下
+删掉后，确保自己的页面是不收影响的
+
+feather2:
+https://github.com/feather-team/feather2
+npm install -g feather2
+进去目录直接 feather2 install backbone 然后就可以在任何一个页面直接require asyc backbone
+过两天放lothar 我们要团队项目试用
+lothar release -w
